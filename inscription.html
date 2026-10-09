@@ -21,46 +21,59 @@
                 
             <div class="btn_srch_header">
                 <img id="icon_search" src="/assets/icons/search.png" alt="search">
-                <button>Rejoindre l'aventure</button>
+                <button><a href="#">Rejoindre l'aventure</a></button>
             </div>
         </nav>
     </header>
 
     <main>
-        <form action="">
-            <p>Tes premiers pas a youcode</p>
+        <form action="" class="form_inscreption">
+            <div class="frm_txt">
+                <p >Tes premiers pas a youcode</p>
+                <h1>Ton aventure commence par une rencontre</h1>
+            </div>
 
-            <h1>Ton aventure commence par une rencontre</h1>
+            <div class="div_inscr">
+                <label for="nom">Nom</label><br>
+                <input type="text" name="nom" id="nom" class="input_inscr" placeholder="nom">
+            </div>
 
-            <label for="nom">Nom</label><br>
-            <input type="text" name="nom" id="nom" placeholder="nom"><br>
+            <div class="div_inscr">
+                <label for="prenom">Prenom</label><br>
+                <input type="text" name="prenom" id="prenom" class="input_inscr" placeholder="prenom">
+            </div>
 
-            <label for="prenom">Prenom</label><br>
-            <input type="text" name="prenom" id="prenom" placeholder="prenom"><br>
+            <div class="div_inscr">
+                <label for="email">Email</label><br>
+                <input type="text" name="email" id="email" class="input_inscr" placeholder="email">
+            </div>
 
-            <label for="email">Email</label><br>
-            <input type="text" name="email" id="email" placeholder="email"><br>
+            <div class="div_inscr">
+                <label for="telephone">Telephone</label><br>
+                <input type="text" name="telephone" id="telephone" class="input_inscr" placeholder="telephone">
+            </div>
 
-            <label for="telephone">Telephone</label><br>
-            <input type="text" name="telephone" id="telephone" placeholder="telephone">
-
-            <input type="checkbox" name="safi" id="" value="safi"> <label for="safi">Safi</label>
-            <input type="checkbox" name="youssoufia" id="" value="youssoufia"> <label for="youssoufia">Youssoufia</label>
-            <input type="checkbox" name="nador" id="" value="nador"> <label for="nador">Nador</label>
-
-            <button type="button">S'inscrire</button>
+            <div class="div_inscr">
+                <input type="radio" name="cumpus" id="safi" class="inpt" value="safi"> <label for="safi">Safi</label><br>
+            
+                <input type="radio" name="cumpus" id="youssoufia" class="inpt" value="youssoufia"> <label for="youssoufia">Youssoufia</label><br>
+            
+                <input type="radio" name="cumpus" id="nador" class="inpt" value="nador"> <label for="nador">Nador</label><br>
+            </div>
+            <button type="submit" class="sincrire">S'inscrire</button>
         </form>
     </main>
 
     <footer>
-        <div>
-            <h1>[Youcode]</h1>
-            <p>Campus Life — des espaces, des projets et une communauté pour grandir ensemble.</p>
-        </div>
+        <div class="firstFooter">
+            <div class="firstDiv">
+                <h2 class="ycode_header">[Youcode]</h2>
+                <p>Campus Life — des espaces, des projets et une communauté pour grandir ensemble.</p>
+            </div>
 
-        <div>
+        <div class="footer_liens">
             <ul>
-                <li><a href="#">Explorer</a></li>
+                <li><a href="#" id="explorer">Explorer</a></li>
                 <li><a href="#">Accueil</a></li>
                 <li><a href="#">Campus</a></li>
                 <li><a href="#">Clubs & activites</a></li>
@@ -68,18 +81,50 @@
         </div>
 
         <div class="footer_liens">
-            <a href="#">Se retrouver</a>
-            <a href="#">Evenements</a>
-            <a href="#">Conseils aux nouveaus</a>
-            <a href="#">Contact</a>
+            <ul>
+                <li><a href="#" id="retrouver">Se retrouver</a></li>
+                <li><a href="#">Evenements</a></li>
+                <li><a href="#">Conseils aux nouveaus</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+
+        </div>
         </div>
 
-        <hr>
-        <p>Projet pedagogique fictif</p>
-        <p>Campus Life - YouCode</p>
+        <hr >
+        <div class="lastFooter">
+            <p>Projet pedagogique fictif</p>
+            <p>Campus Life - YouCode</p>
+        </div>
     </footer>
 
 
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.10.0/localforage.min.js"></script>
+    <script>
+        const form = document.querySelector('.form_inscreption');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); 
+        
+            const nom = document.getElementById("nom").value;
+            const prenom = document.getElementById("prenom").value;
+            const email = document.getElementById("email").value;
+            const telph = document.getElementById("telephone").value;
+            const campusChoisi = document.querySelector('input[name="cumpus"]:checked').value;
+        
+            const etudiant = {
+                nom: nom,
+                prenom: prenom,
+                email: email,
+                telephone: telph,
+                campus: campusChoisi
+            };
+        
+            localforage.setItem('les_informations', etudiant);
+            console.log(etudiant)
+
+        });
+    </script>
 </body>
 </html>
